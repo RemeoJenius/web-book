@@ -1,0 +1,14 @@
+.ui.menu a{
+    width: 180px;
+}
+.right.menu a{
+    width: 60px;
+}
+.ui.primary.button.denglv {
+    width: 97px;
+}
+#con {
+    position:relative;
+    left: 33%;
+    top:25%;
+}

@@ -1,0 +1,30 @@
+.overlay {
+    position: absolute;
+    right: 1%;
+}
+.ui.grid.view {
+    height: 600px;
+    position: relative;
+    top: 10%;
+
+}
+body{
+    position: relative;
+}
+/*.ui.vertical.very.padded.black.segment {
+    position: relative;
+    top: 10%;
+}*/
+.ui.images.view {
+    right:1%;
+    position: absolute;
+}
+.big.left.floated {
+    font-size: 30px;
+    color: rgb(255, 0, 0);
+    margin-left: 20px;
+}
+.right.menu {
+	position: absolute;
+	right:8%;
+}

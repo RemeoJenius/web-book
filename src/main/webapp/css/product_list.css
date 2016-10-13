@@ -1,0 +1,25 @@
+.ui.container {
+    box-sizing: border-box;
+    margin-bottom: 40px;
+    /*left: 25%;*/
+    top:4%;
+    position: relative;
+}
+body {
+    position: absolute;
+}
+.overlay {
+    position: absolute;
+    right: 1%;
+}
+.ui.two.bottom.attached.buttons {
+    top:7%;
+    position: relative;
+}
+.ui.main.container {
+    height: 90em;
+}
+.right.menu {
+	position: absolute;
+	right:8%;
+}

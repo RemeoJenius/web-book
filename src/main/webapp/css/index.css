@@ -1,0 +1,19 @@
+.ui.bottom.attached.tab.segment.active {
+    height: 800px;
+    width:1128px;
+}
+
+.ui.four.cards > .ui.card {
+    margin: 0,20px;
+}
+.ui.main.container {
+    position: absolute;
+}
+.overlay {
+    position: absolute;
+    right: 1%;
+}
+.right.menu {
+	position: absolute;
+	right:8%;
+}
