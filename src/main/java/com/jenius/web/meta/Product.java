@@ -6,7 +6,14 @@ public class Product {
 	private String title;
 	private String description;
 	private String imageAdress;
+	private double price;
 	
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
 	public int getId() {
 		return id;
 	}
