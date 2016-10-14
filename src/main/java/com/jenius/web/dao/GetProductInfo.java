@@ -10,5 +10,7 @@ public interface GetProductInfo {
 	
 	@Select("select * from product")
 	public ArrayList<Product> getProductsInfo();
+	@Select("select * from product where id = #{id}")
+	public Product getProductsInfoById(int id);
 	
 }

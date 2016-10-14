@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -92,12 +93,12 @@ style>body {
 			</div>
 		</div>
 		<div class="right menu">
-			<div class="item">
+			<div class="item input" >
 				<div class="ui transparent inverted icon input">
 					<i class="search icon"></i> <input type="text" placeholder="Search">
 				</div>
 			</div>
-			<a class="item">Link</a>
+			<a class="item Link">Link</a>
 			<s:if test="#session.user!=null"><div class="item text">您好，</div>
 					<div class="ui dropdown item">
 						${user.username}<i class="dropdown icon"></i>
@@ -114,6 +115,7 @@ style>body {
 				<a class="item" href="login.jsp">登录</a>
 				<a class="item">注册</a>
 			</s:else>
+
 		</div>
 	</div>
 	<div class="overlay">
@@ -128,22 +130,19 @@ style>body {
 		<div class="four wide column">
 			<div class="ui left floated medium image">
 				<a class="ui right red corner label"> <i class="heart icon"></i>
-				</a> <img class="ui images view" src="images/java.jpeg" />
+				</a> <img class="ui images view" src="${product.imageAdress}" />
 			</div>
 		</div>
 		<div class="four wide column">
 			<div class="ui card view">
 				<div class="content">
-					<div class="header">正版Java从入门到精通(第3版)</div>
+					<div class="header">${product.title}</div>
 					<div class="description">
-						<p class="ui p">java视频教程 教材技术高级程序设计编程思想javascript
-							web源码计算机基础自学书籍.
-							Java是一门面向对象编程语言，不仅吸收了C++语言的各种优点，还摒弃了C++里难以理解的多继承、指针等概念，因此Java语言具有功能强大和简单易用两个特征。
-						</p>
+						<p class="ui p">${product.description}</p>
 					</div>
 					<div class="ui divider"></div>
 					<span class="left floated">价格：</span> <span
-						class="big left floated">¥55</span>
+						class="big left floated">¥${product.price}</span>
 				</div>
 				<div class="ui two bottom attached buttons">
 					<div class="red ui button">购买</div>

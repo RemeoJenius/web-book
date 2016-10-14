@@ -31,5 +31,8 @@
   		<action name="product_list" class="com.jenius.web.action.ProductList" method="list">
   			<result name="list">/product_list.jsp</result> 
   		</action>
+  		<action name="product_detail" class="com.jenius.web.action.ProductDetailAction" method="productDetail">
+  			<result name="detail">/product_view.jsp</result>
+  		</action>
   	</package>
   </struts> 

@@ -147,7 +147,7 @@ body {
 					<div class="content">
 						<div class="header">${product.title}</div>
 						<div class="meta">
-							<a href="product_view.html" class="group">详情</a>
+							<a href="product_detail?id=${product.id}" class="group">详情</a>
 						</div>
 						<div class="description">${product.description}</div>
 					</div>
@@ -178,7 +178,7 @@ body {
 					<div class="content">
 						<div class="header">${product.title}</div>
 						<div class="meta">
-							<a href="product_view.html" class="group">详情</a>
+							<a href="product_detail?id=${product.id}" class="group">详情</a>
 						</div>
 						<div class="description">${product.description}</div>
 					</div>
@@ -210,7 +210,7 @@ body {
 					<div class="content">
 						<div class="header">${product.title}</div>
 						<div class="meta">
-							<a href="product_view.html" class="group">详情</a>
+							<a href="product_detail?id=${product.id}" class="group">详情</a>
 						</div>
 						<div class="description">${product.description}</div>
 					</div>
