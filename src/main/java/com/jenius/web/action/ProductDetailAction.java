@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.struts2.ServletActionContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.jenius.web.dao.GetProductInfo;
 import com.jenius.web.dao.GetUserInfo;
@@ -24,15 +26,8 @@ public class ProductDetailAction extends ActionSupport {
 	{
 		HttpServletRequest request = ServletActionContext.getRequest();  
 		int id = Integer.parseInt(request.getParameter("id"));
-		String resource = "confAnnotation.xml";
-		// 2.加载应用配置文件
-		InputStream is = MainAction.class.getClassLoader().getResourceAsStream(resource);
-		// 3.创建SqlSessionFctory
-		SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
-		Configuration conf = sessionFactory.getConfiguration();
-		conf.addMapper(GetProductInfo.class);
-		SqlSession session1 = sessionFactory.openSession();
-		GetProductInfo getProductInfo = session1.getMapper(GetProductInfo.class);
+		ApplicationContext context = new ClassPathXmlApplicationContext("application-dao.xml");
+		GetProductInfo getProductInfo = context.getBean("getProductInfo",GetProductInfo.class);
 		Product product = getProductInfo.getProductsInfoById(id);
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		session.put("product", product);

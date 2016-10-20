@@ -12,6 +12,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.struts2.ServletActionContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.jenius.web.dao.GetUserInfo;
 import com.jenius.web.meta.User;
@@ -24,16 +26,9 @@ public class LoginAction implements ModelDriven<User> {
 
 	public String login() throws IOException {
 		String str = null;
+		ApplicationContext context  = new ClassPathXmlApplicationContext("application-dao.xml");
+		GetUserInfo getUserInfo = context.getBean("getUserInfo",GetUserInfo.class);
 		ActionContext ac = ActionContext.getContext();
-		String resource = "confAnnotation.xml";
-		// 2.加载应用配置文件
-		InputStream is = MainAction.class.getClassLoader().getResourceAsStream(resource);
-		// 3.创建SqlSessionFctory
-		SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
-		Configuration conf = sessionFactory.getConfiguration();
-		conf.addMapper(GetUserInfo.class);
-		SqlSession session1 = sessionFactory.openSession();
-		GetUserInfo getUserInfo = session1.getMapper(GetUserInfo.class);
 		User user1 = new User();
 		user1 = getUserInfo.getUserInfo(user.getUsername(), user.getPassword());
 		if (user1 != null) {
