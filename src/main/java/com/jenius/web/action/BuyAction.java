@@ -33,6 +33,7 @@ public class BuyAction {
 
 	public String buyProduct()
 	{
+		
 		this.result = "success";
 		return "buyProduct";
 	}          

@@ -36,7 +36,7 @@ public class LoginAction implements ModelDriven<User> {
 		GetUserInfo getUserInfo = session1.getMapper(GetUserInfo.class);
 		User user1 = new User();
 		user1 = getUserInfo.getUserInfo(user.getUsername(), user.getPassword());
-		if (user1.getUsername() != null) {
+		if (user1 != null) {
 			Map<String, Object> session = ac.getSession();
 			session.put("user", user);
 			str = "success";
