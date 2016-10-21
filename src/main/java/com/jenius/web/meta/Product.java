@@ -7,7 +7,14 @@ public class Product {
 	private String description;
 	private String imageAdress;
 	private double price;
+	private long buyTime;
 	
+	public long getBuyTime() {
+		return buyTime;
+	}
+	public void setBuyTime(long buyTime) {
+		this.buyTime = buyTime;
+	}
 	public double getPrice() {
 		return price;
 	}

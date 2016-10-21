@@ -14,17 +14,15 @@
   		<action name="logout" class="com.jenius.web.action.LogoutAction">
   			<result>/index.jsp</result>
   		</action>
-  		<action name="delete" class="com.jenius.web.action.DeleteAction" method="delete">
-  			<result name="delete" type="json">
-  				<param name="includeProperties">
-					result
-				</param>
-  			</result> 
-  		</action>
-  		<action name="buy" class="com.jenius.web.action.BuyAction" method="buyProduct">
+  		<action name="operating_*" class="com.jenius.web.action.OperatingAction" method="{1}">
   			<result name="buyProduct" type="json">
   				<param name="includeProperties">
-					result
+					result,message
+				</param>
+  			</result> 
+  			<result name="delete" type="json">
+  				<param name="includeProperties">
+					result,message
 				</param>
   			</result> 
   		</action>

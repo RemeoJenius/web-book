@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>添加商品</title>
+    <link rel="stylesheet" href="css/semantic.css" media="screen" title="no title">
+    <link rel="stylesheet" href="css/global.css" media="screen" title="no title">
+    <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="js/semantic.min.js"></script>
+    <style>
+        body {
+            padding: 1em;
+        }
+
+        .ui.menu {
+            margin: 3em 0em;
+        }
+
+        .ui.menu:last-child {
+            margin-bottom: 110px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.ui.menu .ui.dropdown').dropdown({
+                on: 'hover'
+            });
+            $('.ui.menu a.item').on('click', function() {
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+        });
+        $(document).ready(function() {
+            $('.special.card .image').dimmer({
+                on: 'hover'
+            });
+            $('.star.rating').rating();
+            $('.card .dimmer').dimmer({
+                on: 'hover'
+            });
+        });
+        $(document).ready(function() {
+
+            // fix main menu to page on passing
+            $('.main.menu').visibility({
+                type: 'fixed'
+            });
+            $('.overlay').visibility({
+                type: 'fixed',
+                offset: 80
+            });
+
+            // lazy load images
+            $('.image').visibility({
+                type: 'image',
+                transition: 'vertical flip in',
+                duration: 500
+            });
+
+            // show dropdown on hover
+            $('.main.menu  .ui.dropdown').dropdown({
+                on: 'hover'
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="ui fixed inverted menu">
+        <div class="header item">
+            <i class="book icon"></i>
+        </div>
+        <div class="active item">Home</div>
+        <div class="ui dropdown item">
+            分类 <i class="dropdown icon"></i>
+            <div class="menu">
+                <div class="item">java</div>
+                <div class="divider"></div>
+                <div class="item">C</div>
+                <div class="divider"></div>
+                <div class="item">C++</div>
+                <div class="divider"></div>
+                <div class="item">C#</div>
+                <div class="divider"></div>
+                <div class="item">Python</div>
+            </div>
+        </div>
+        <div class="right menu">
+            <div class="item">
+                <div class="ui transparent inverted icon input">
+                    <i class="search icon"></i> <input type="text" placeholder="Search">
+                </div>
+            </div>
+            <a class="item">Link</a>
+            <div class="item text">您好，</div>
+            <div class="ui dropdown item">
+                liyongjun<i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item">我的积分</a>
+                    <a class="item" href="product_list">我的购物车</a>
+                    <a class="item">收礼人</a>
+                    <a class="item">我的收藏</a>
+                    <a class="item" href="logout">安全退出</a>
+                </div>
+            </div>
+
+            <!-- <s:if test="#session.user!=null"><div class="item text">您好，</div>
+    					<div class="ui dropdown item">
+    						${user.username}<i class="dropdown icon"></i>
+    						<div class="menu">
+    							<a class="item">我的积分</a>
+    							<a class="item" href="product_list">我的购物车</a>
+    							<a class="item">收礼人</a>
+    							<a class="item">我的收藏</a>
+    							<a class="item" href="logout">安全退出</a>
+    						</div>
+    					</div>
+    			</s:if>
+    			<s:else>
+    				<a class="item" href="login.jsp">登录</a>
+    				<a class="item">注册</a>
+    			</s:else> -->
+
+        </div>
+    </div>
+    <div class="overlay">
+        <div class="ui labeled icon vertical menu">
+            <a class="item"><i class="twitter icon"></i> Tweet</a> <a class="item"><i class="facebook icon"></i> Share</a> <a class="item"><i
+    				class="mail icon"></i> E-mail</a>
+        </div>
+    </div>
+    <div class="ui main container">
+        <form class="ui form">
+            <div class="ui two column grid">
+                <div class="column">
+                    <h4 class="ui dividing header">Shipping Information</h4>
+                    <div class="field">
+                        <label>商品名称</label>
+                        <div class="two fields">
+                            <div class="field">
+                                <input type="text" name="productName" placeholder="Product Name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>商品类型</label>
+                            <select class="ui fluid search dropdown" name="card[expire-month]">
+    <option value="">热卖</option>
+    <option value="1">促销</option>
+    <option value="2">推荐</option>
+    <option value="3">热卖</option>
+  </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <!-- <div class="ui image">
+                        <img src="images/python.jpg" alt="" />
+                    </div> -->
+                </div>
+            </div>
+            <h4 class="ui dividing header">商品简介</h4>
+
+            <div class="fields">
+                <div class="eight wide field">
+                    <label>Product Introduction</label>
+                    <div class="field">
+                        <input type="text">
+                    </div>
+                </div>
+            </div>
+            <h4 class="ui dividing header">商品描述</h4>
+            <div class="field">
+                <label>Product Description:</label>
+                <div class="field">
+                    <textarea rows="5"></textarea>
+                </div>
+            </div>
+            <div class="ui button" tabindex="0">Submit Order</div>
+        </form>
+    </div>
+    <div class="ui basic modal">
+        <i class="close icon"></i>
+        <div class="header">Archive Old Messages</div>
+        <div class="image content">
+            <div class="image">
+                <i class="github icon"></i>
+            </div>
+            <div class="description">
+                <p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="two fluid ui inverted buttons">
+                <div class="ui cancel red basic inverted button">
+                    <i class="remove icon"></i> No
+                </div>
+                <div id="yes" class="ui ok green basic inverted button">
+                    <i class="checkmark icon" id="yes"></i> Yes
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    $('.menu .item').tab();
+    $('.ui.red.button').click(function() {
+        $('.ui.modal').modal('show');
+    });
+    $('.ui.checkbox')
+        .checkbox();
+    $('#yes').click(function() {
+        $.ajax({
+            url: 'operating_add',
+            dataType: 'text',
+            success: function(result) {
+                alert("添加成功");
+                // window.location.assign('product_list');
+
+            },
+            error: function(message) {
+                alert("添加失败");
+            }
+        });
+    });
+</script>
+
+</html>

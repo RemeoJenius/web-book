@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="css/index.css" media="screen"
 	title="no title">
 <script type="text/javascript" src="js/jquery-3.1.1.js">
-	
+
 </script>
 <script type="text/javascript" src="js/semantic.min.js"></script>
 <style>
@@ -101,9 +101,8 @@ body {
 					<div class="ui dropdown item">
 						${user.username}<i class="dropdown icon"></i>
 						<div class="menu">
-							<a class="item">我的积分</a> 
-							<a class="item" href="product_list">我的购物车</a> 
-							<a class="item">收礼人</a>
+							<a class="item">我的积分</a>
+							<a class="item" href="product_list">我的购物车</a>
 							<a class="item">我的收藏</a>
 							<a class="item" href="logout">安全退出</a>
 						</div>
@@ -297,7 +296,7 @@ body {
 	});
 	$('#yes').click(function () {
 		$.ajax({
-			url:'buy',
+			url:'operating_buyProduct',
 			dataType:'text',
 			success:function(result){
 				alert("购买成功");
@@ -309,9 +308,9 @@ body {
 		});
 	});
 	/* $.fn.api.settingsapi={
-			          
+
 	}; */
-	
+
 </script>
 
 </html>
