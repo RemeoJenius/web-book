@@ -33,7 +33,7 @@ public class LoginAction implements ModelDriven<User> {
 		user1 = getUserInfo.getUserInfo(user.getUsername(), user.getPassword());
 		if (user1 != null) {
 			Map<String, Object> session = ac.getSession();
-			session.put("user", user);
+			session.put("user", user1);
 			str = "success";
 		} else {
 			Map<String, Object> request = (Map<String, Object>) ac.get("request");

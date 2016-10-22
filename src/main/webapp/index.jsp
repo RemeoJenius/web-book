@@ -296,7 +296,7 @@ body {
 	});
 	$('#yes').click(function () {
 		$.ajax({
-			url:'operating_buyProduct',
+			url:'operating_buyProduct?id='+${product.id},
 			dataType:'text',
 			success:function(result){
 				alert("购买成功");

@@ -21,6 +21,7 @@ public class ProductList {
 		Map<String , Object> session = ActionContext.getContext().getSession();
 		ArrayList<Product> productList = new ArrayList<Product>();
 		ProductOpDao op = context.getBean("productOpDao",ProductOpDao.class);
+		System.out.println(((User)(session.get("user"))).getId());
 		productList = op.getBuyProductList(((User)(session.get("user"))).getId());
 		session.put("productList", productList);
 		session.put("message", true);    
