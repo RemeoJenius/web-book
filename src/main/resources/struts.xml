@@ -22,9 +22,14 @@
   			</result> 
   			<result name="delete" type="json">
   				<param name="includeProperties">
-					result,message
+					message,result
 				</param>
   			</result> 
+  			<result name="addProduct" type="json">
+  				<param name="includeProperties">
+					result,message
+				</param>
+  			</result>
   		</action>
   		<action name="product_list" class="com.jenius.web.action.ProductList" method="list">
   			<result name="list">/product_list.jsp</result> 

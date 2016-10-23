@@ -8,7 +8,21 @@ public class Product {
 	private String imageAdress;
 	private double price;
 	private long buyTime;
+	private String buyTimeFormat;
+	private String introduction;
 	
+	public String getIntroduction() {
+		return introduction;
+	}
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+	public String getBuyTimeFormat() {
+		return buyTimeFormat;
+	}
+	public void setBuyTimeFormat(String buyTimeFormat) {
+		this.buyTimeFormat = buyTimeFormat;
+	}
 	public long getBuyTime() {
 		return buyTime;
 	}

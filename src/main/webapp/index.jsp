@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+0<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,10 +10,35 @@
 	title="no title">
 <link rel="stylesheet" href="css/index.css" media="screen"
 	title="no title">
-<script type="text/javascript" src="js/jquery-3.1.1.js">
-
-</script>
+<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
 <script type="text/javascript" src="js/semantic.min.js"></script>
+<script type="text/javascript" src="js/global.js"></script>
+<script type="text/javascript">
+	$('.menu .item').tab();
+	/* $('.friends').click(function() { 
+		$('.ui.modal').modal('show');
+	}); */ 
+	$('.right.floated.created').click(function() {
+		$('.ui.modal').modal('show');
+	});
+	 function getProductId(value,messages){
+		$('.ui.modal').modal('show');
+		
+		$('#yes').click(function () {
+			$.ajax({
+				url:'operating_buyProduct?id='+value,
+				dataType:'text',
+				success:function(result){
+					alert("购买成功");
+					window.location.assign('product_list');
+				},
+				error:function(message){
+					alert("购买失败");
+				}
+			});
+		}); 
+	}; 
+</script>
 <style>
 body {
 	padding: 1em;
@@ -27,101 +52,10 @@ body {
 	margin-bottom: 110px;
 }
 </style>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('.ui.menu .ui.dropdown').dropdown({
-			on : 'hover'
-		});
-		$('.ui.menu a.item').on('click', function() {
-			$(this).addClass('active').siblings().removeClass('active');
-		});
-	});
-	$(document).ready(function() {
-		$('.special.card .image').dimmer({
-			on : 'hover'
-		});
-		$('.star.rating').rating();
-		$('.card .dimmer').dimmer({
-			on : 'hover'
-		});
-	});
-	$(document).ready(function() {
 
-		// fix main menu to page on passing
-		$('.main.menu').visibility({
-			type : 'fixed'
-		});
-		$('.overlay').visibility({
-			type : 'fixed',
-			offset : 80
-		});
-
-		// lazy load images
-		$('.image').visibility({
-			type : 'image',
-			transition : 'vertical flip in',
-			duration : 500
-		});
-
-		// show dropdown on hover
-		$('.main.menu  .ui.dropdown').dropdown({
-			on : 'hover'
-		});
-	});
-</script>
 </head>
 <body>
-	<div class="ui fixed inverted menu">
-		<div class="header item">
-			<i class="book icon"></i>
-		</div>
-		<div class="active item">Home</div>
-		<div class="ui dropdown item">
-			分类 <i class="dropdown icon"></i>
-			<div class="menu">
-				<div class="item">java</div>
-				<div class="divider"></div>
-				<div class="item">C</div>
-				<div class="divider"></div>
-				<div class="item">C++</div>
-				<div class="divider"></div>
-				<div class="item">C#</div>
-				<div class="divider"></div>
-				<div class="item">Python</div>
-			</div>
-		</div>
-		<div class="right menu">
-			<div class="item">
-				<div class="ui transparent inverted icon input">
-					<i class="search icon"></i> <input type="text" placeholder="Search">
-				</div>
-			</div>
-			<a class="item">Link</a>
-			<s:if test="#session.user!=null"><div class="item text">您好，</div>
-					<div class="ui dropdown item">
-						${user.username}<i class="dropdown icon"></i>
-						<div class="menu">
-							<a class="item">我的积分</a>
-							<a class="item" href="product_list">我的购物车</a>
-							<a class="item">我的收藏</a>
-							<a class="item" href="logout">安全退出</a>
-						</div>
-					</div>
-			</s:if>
-			<s:else>
-				<a class="item" href="login.jsp">登录</a>
-				<a class="item">注册</a>
-			</s:else>
-
-		</div>
-	</div>
-	<div class="overlay">
-		<div class="ui labeled icon vertical menu">
-			<a class="item"><i class="twitter icon"></i> Tweet</a> <a
-				class="item"><i class="facebook icon"></i> Share</a> <a class="item"><i
-				class="mail icon"></i> E-mail</a>
-		</div>
-	</div>
+	<jsp:include page="head.jsp"></jsp:include>
 	<div class="ui main container">
 		<img class="ui image" src="images/2.jpg" alt="" />
 		<div class="ui top blue attached tabular menu">
@@ -154,7 +88,7 @@ body {
 						<div data-rating="4" class="ui star rating"></div>
 					</div>
 					<div class="extra content">
-						<a class="right floated created">收藏</a> <a class="friends"> 购买</a>
+						<a class="right floated created">收藏</a> <a class="friends"  onclick="getProductId(${product.id});"> 购买</a>
 					</div>
 				</div>
 				</s:iterator>
@@ -185,7 +119,7 @@ body {
 						<div data-rating="4" class="ui star rating"></div>
 					</div>
 					<div class="extra content">
-						<a class="right floated created">收藏</a> <a class="friends"> 购买</a>
+						<a class="right floated created">收藏</a> <a class="friends"  onclick="getProductId(${product.id});"> 购买</a>
 					</div>
 				</div>
 				</s:iterator>
@@ -217,7 +151,7 @@ body {
 						<div data-rating="4" class="ui star rating"></div>
 					</div>
 					<div class="extra content">
-						<a class="right floated created">收藏</a> <a class="friends"> 购买</a>
+						<a class="right floated created">收藏</a> <a class="friends"  onclick="getProductId(${product.id});"> 购买</a>
 					</div>
 				</div>
 				</s:iterator>
@@ -268,8 +202,7 @@ body {
 				<i class="github icon"></i>
 			</div>
 			<div class="description">
-				<p>Your inbox is getting full, would you like us to enable
-					automatic archiving of old messages?</p>
+				<p>您去确定购买该商品?</p>
 			</div>
 		</div>
 		<div class="actions">
@@ -283,34 +216,5 @@ body {
 			</div>
 		</div>
 	</div>
-
-
 </body>
-<script type="text/javascript">
-	$('.menu .item').tab();
-	$('.friends').click(function() {
-		$('.ui.modal').modal('show');
-	});
-	$('.right.floated.created').click(function() {
-		$('.ui.modal').modal('show');
-	});
-	$('#yes').click(function () {
-		$.ajax({
-			url:'operating_buyProduct?id='+${product.id},
-			dataType:'text',
-			success:function(result){
-				alert("购买成功");
-				window.location.assign('product_list');
-			},
-			error:function(message){
-				alert("购买失败");
-			}
-		});
-	});
-	/* $.fn.api.settingsapi={
-
-	}; */
-
-</script>
-
 </html>
