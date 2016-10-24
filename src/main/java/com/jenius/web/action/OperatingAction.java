@@ -54,8 +54,10 @@ public class OperatingAction implements ModelDriven<Product>{
 
 	public String addProduct()
 	{
-		this.result = "success";
-		this.message = "商品购买成功";
+		ApplicationContext context = new ClassPathXmlApplicationContext("application-dao.xml");
+		ProductOpDao productOpDao = context.getBean("productOpDao",ProductOpDao.class);
+		System.out.println("title="+product.getTitle());
+		productOpDao.addProduct(product);
 		return "addProduct";
 	}
 	public String buyProduct() {

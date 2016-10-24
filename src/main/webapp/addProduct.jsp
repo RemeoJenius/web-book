@@ -17,15 +17,15 @@
 <body>
 	<jsp:include page="head.jsp"></jsp:include>
 	<div class="ui main container">
-		<form class="ui form" method="post" action="operating_addProduct">
+		<form id="yanzheng" class="ui form" method="post" action="operating_addProduct">
 			<div class="ui two column grid">
-				<div class="column">
+				<div class="column" style="padding-top: 6rem;">
 					<h4 class="ui dividing header">Shipping Information</h4>
-					<div class="field">
+					<div class="required field">
 						<label>商品名称</label>
 						<div class="two fields">
 							<div class="field">
-								<input id="productName" type="text" name="productName" >
+								<input id="title" type="text" name="title"/>
 							</div>
 						</div>
 					</div>
@@ -53,8 +53,14 @@
 				<div class="eight wide field">
 					<label>Product Introduction</label>
 					<div class="field">
-						<input id="introduction" type="text" name="introduction">
+						<input id="introduction" type="text" name="introduction"/>
 					</div>
+				</div>
+				<div class="eight wide field">
+						<div class="ui error message">
+							<div class="header">不好意思</div>
+							<p>请填写商品名称</p>
+						</div>
 				</div>
 			</div>
 			<h4 class="ui dividing header">商品描述</h4>
@@ -64,7 +70,7 @@
 					<textarea id="description" rows="5" name="description"></textarea>
 				</div>
 			</div>
-			<div class="ui button submit" tabindex="0">Submit Order</div>
+			<input class="ui button submit" type="submit" value="Submit Order"/>
 		</form>
 	</div>
 	<div class="ui basic modal">
@@ -75,8 +81,7 @@
 				<i class="github icon"></i>
 			</div>
 			<div class="description">
-				<p>Your inbox is getting full, would you like us to enable
-					automatic archiving of old messages?</p>
+				<p>您去确定购买该商品?</p>
 			</div>
 		</div>
 		<div class="actions">
@@ -85,72 +90,64 @@
 					<i class="remove icon"></i> No
 				</div>
 				<div id="yes" class="ui ok green basic inverted button">
-					<i class="checkmark icon" id="yes"></i> Yes
+					<i class="checkmark icon"></i> Yes
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
 <script type="text/javascript">
-	$('.menu .item').tab();
-	$('.ui.button.submit').click(function() {
-		if($('#productName').val() != '' && $('#introduction').val() != '' && $('#description').val() != '')
-			{$('.ui.basic.modal')
-		  .modal('show')
-		;}
-	});
+	$('.menu.item').tab();
+	  $('.ui.button.submit').click(
+			function() {
+				if ($('#title').val() == ''){
+					$('#yanzheng').addClass('error');
+				}
+				/* if ($('#title').val() != '' && $('#introduction').val() != '' && $('#description').val() != '') {
+					/* $('.ui.modal').modal('show'); 
+					 $('#yes').click(function()  {
+						$.ajax({
+							url : 'add',
+							dataType : 'json',
+							success : function(response) {
+								alert("添加成功");
+								 window.location.assign('/web-book/');
+							},
+							error : function(message) {
+								alert("添加失败");
+							}
+						});
+					});
+
+				} */
+
+			});  
 	$('.ui.checkbox').checkbox();
-	$('#yes').click(function() {
-		$.ajax({
-			url : 'operating_addProduct',
-			dataType : 'json',
-			success : function(response) {
-				alert("添加成功");
-				 window.location.assign('/web-book/');
-			},
-			error : function(message) {
-				alert("添加失败");
-			}
-		});
-	});
 	$(document).ready(function() {
 		$('.ui.form').form({
 			fields : {
-				productName : {
-					identifier : 'productName',
+				title : {
 					rules : [ {
 						type : 'empty',
-						prompt : 'Please enter your productName'
-					}, {
-						type : 'productName',
-						prompt : 'Please enter a valid productName'
-					} ]
+						prompt : '商品名不能为空'
+					},  ]
 				},
 				introduction : {
-					identifier : 'introduction',
 					rules : [ {
 						type : 'empty',
-						prompt : 'Please enter your introduction'
-					}, {
-						type : 'introduction',
-						prompt : 'Please enter a valid introduction'
-					} ]
+						prompt : '简介不能唯恐'
+					},  ]
 				},
 				description : {
-					identifier : 'description',
 					rules : [ {
 						type : 'empty',
-						prompt : 'Please enter your description'
-					}, {
-						type : 'description',
-						prompt : 'Please enter a valid description'
-					} ]
+						prompt : '商品描述不能为空'
+					},  ]
 				}
-				
 			}
 		});
 	});
-	
+
 </script>
 
 </html>

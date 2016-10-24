@@ -21,5 +21,5 @@ public interface ProductOpDao {
 	public void deleteProductById(@Param("userId")int userId , @Param("productId")int productId);
 	
 	@Insert("insert into product(title,description,imageAdress,price,introduction) values(#{product.title},#{product.description},#{product.imageAdress},#{product.price},#{product.introduction})")
-	public void addProduct(Product product);
+	public void addProduct(@Param("product")Product product);
 } 
