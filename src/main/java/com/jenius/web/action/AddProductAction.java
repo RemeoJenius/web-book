@@ -72,6 +72,11 @@ public class AddProductAction implements ModelDriven<Product>{
 		System.out.println(product.getPrice());
 		FileUtils.copyFile(upload, new File(file,uploadFileName));
 		productOpDao.addProduct(product);
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		result = "上传成功";
 		return "add";
 	}

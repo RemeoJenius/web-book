@@ -22,19 +22,9 @@ public class MainAction extends ActionSupport {
 	public String execute() throws Exception {
 		Map<String, Object> application = ActionContext.getContext().getApplication();
 		ArrayList<Product> productList = new ArrayList<Product>();
-//		ArrayList<Product> productList1 = new ArrayList<Product>();
-//		ArrayList<Product> productList2 = new ArrayList<Product>();
-//		ArrayList<Product> productList3 = new ArrayList<Product>();
 		ApplicationContext context = new ClassPathXmlApplicationContext("application-dao.xml");
 		GetProductInfo getProductInfo = context.getBean("getProductInfo",GetProductInfo.class);
 		productList = getProductInfo.getProductsInfo();
-//		productList1 = getProductInfo.getProductsInfoBy1();
-//		productList2 = getProductInfo.getProductsInfoBy2();
-//		productList3 = getProductInfo.getProductsInfoBy3();
-//		application.put("productList", productList1);
-//		application.put("products", productList1);
-//		System.out.println(productList1.get(0).getTitle());
-//		application.put("productList2", productList3);
 		application.put("productList", productList);
 		return SUCCESS;
 	}

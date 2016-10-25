@@ -38,7 +38,10 @@
 			<result name="detail">/product_view.jsp</result>
 		</action>
 		<action name="add" class="com.jenius.web.action.AddProductAction" method="addProduct">
-			<result name="add">/</result>
+		<result name="add" type="chain">index</result>
+		</action>
+		<action name="edit" class="com.jenius.web.action.EditProduct" method="edit">
+			<result name="edit">/product_edit.jsp</result>
 		</action>
 	</package>
 </struts> 
