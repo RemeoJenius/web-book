@@ -62,15 +62,19 @@ public class OperatingAction implements ModelDriven<Product>{
 		return "addProduct";
 	}
 	public String buyProduct() {
+		int id;
 		ArrayList<Product> ps = new ArrayList<Product>();
 		ApplicationContext context = new ClassPathXmlApplicationContext("application-dao.xml");
 		ProductOpDao op = context.getBean("productOpDao",ProductOpDao.class);
 		HttpServletRequest request = ServletActionContext.getRequest();  
-//		int id = Integer.parseInt(request.getParameter("id"));
-		int id = (((Product)(session.get("product"))).getId());
 		int Userid= ((User)session.get("user")).getId();
-		System.out.println("userId"+Userid+" productId="+id);
-		GetProductInfo getProductInfo = context.getBean("getProductInfo",GetProductInfo.class); 
+		GetProductInfo getProductInfo = context.getBean("getProductInfo",GetProductInfo.class);
+		if(request.getParameter("id") != null)
+		{
+			id = Integer.parseInt(request.getParameter("id"));
+		}else {
+			id = (((Product)(session.get("product"))).getId());
+		}
 		op.addProductToOrder(Userid, id, new Date().getTime(), getProductInfo.getProductsInfoById(id).getPrice());
 		this.result = "success";
 		this.message = "商品购买成功";

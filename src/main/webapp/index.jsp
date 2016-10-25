@@ -18,7 +18,7 @@
 	$('.right.floated.created').click(function() {
 		$('.ui.modal').modal('show');
 	});
-	 function getProductId(value,messages){
+	 function getProductId(value){
 		$('.ui.modal').modal('show');
 
 		$('#yes').click(function () {
