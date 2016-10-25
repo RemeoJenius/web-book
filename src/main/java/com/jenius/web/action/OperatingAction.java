@@ -65,7 +65,8 @@ public class OperatingAction implements ModelDriven<Product>{
 		ApplicationContext context = new ClassPathXmlApplicationContext("application-dao.xml");
 		ProductOpDao op = context.getBean("productOpDao",ProductOpDao.class);
 		HttpServletRequest request = ServletActionContext.getRequest();  
-		int id = Integer.parseInt(request.getParameter("id"));
+//		int id = Integer.parseInt(request.getParameter("id"));
+		int id = (((Product)(session.get("product"))).getId());
 		int Userid= ((User)session.get("user")).getId();
 		System.out.println("userId"+Userid+" productId="+id);
 		GetProductInfo getProductInfo = context.getBean("getProductInfo",GetProductInfo.class); 

@@ -10,7 +10,14 @@ public class Product {
 	private long buyTime;
 	private String buyTimeFormat;
 	private String introduction;
+	private int typeId;
 	
+	public int getTypeId() {
+		return typeId;
+	}
+	public void setTypeId(int typeId) {
+		this.typeId = typeId;
+	}
 	public String getIntroduction() {
 		return introduction;
 	}

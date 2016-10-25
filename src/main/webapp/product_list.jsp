@@ -114,7 +114,7 @@ body {
 					<h4>购买时间：${product.buyTimeFormat}</h4>
 					<h4>购买价格：¥${product.price}</h4>
 				</div>
-				<s:if test="#session.message!=null">
+				<s:if test="#session.productList!=null">
 				<div class="three wide column">
 					<div class="ui two bottom attached buttons">
 						<div class="ui red button" onclick="getProductId(${product.id},'购买');">购买</div>

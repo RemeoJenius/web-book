@@ -15,15 +15,15 @@
 <script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript">
 	$('.menu .item').tab();
-	/* $('.friends').click(function() { 
+	/* $('.friends').click(function() {
 		$('.ui.modal').modal('show');
-	}); */ 
+	}); */
 	$('.right.floated.created').click(function() {
 		$('.ui.modal').modal('show');
 	});
 	 function getProductId(value,messages){
 		$('.ui.modal').modal('show');
-		
+
 		$('#yes').click(function () {
 			$.ajax({
 				url:'operating_buyProduct?id='+value,
@@ -36,8 +36,8 @@
 					alert("购买失败");
 				}
 			});
-		}); 
-	}; 
+		});
+	};
 </script>
 <style>
 body {
@@ -64,7 +64,7 @@ body {
 		</div>
 		<div class="ui bottom attached tab segment" data-tab="first">
 			<!-- first -->
-			<div class="ui four cards">
+			<%-- <div class="ui four cards">
 			<s:iterator var="product" value="#application.productList">
 				<div class="ui relaxed card">
 					<div class="image">
@@ -88,11 +88,11 @@ body {
 						<div data-rating="4" class="ui star rating"></div>
 					</div>
 					<div class="extra content">
-						<a class="right floated created">收藏</a> <a class="friends"  onclick="getProductId(${product.id});"> 购买</a>
+						<a class="right floated created">收藏</a> <a class="friends"  onclick="getProductId(${product.id});">购买</a>
 					</div>
 				</div>
 				</s:iterator>
-			</div>
+			</div> --%>
 		</div>
 		<div class="ui bottom attached tab segment active" data-tab="second">
 			<div class="ui four cards">
@@ -134,7 +134,12 @@ body {
 						<div class="ui blurring inverted dimmer">
 							<div class="content">
 								<div class="center">
+								<s:if test="#session.user.userType==1">
+									<div class="ui teal button">删除商品</div>
+								</s:if>
+								<s:else>
 									<div class="ui teal button">Add shopping cart</div>
+								</s:else>
 								</div>
 							</div>
 						</div>
