@@ -1,5 +1,5 @@
 .ui.bottom.attached.tab.segment.active {
-    height: 800px;
+	min-height:800px;
     width:1128px;
 }
 

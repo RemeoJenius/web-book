@@ -27,6 +27,11 @@
 					message,result
 				</param>
 			</result>
+			<result name="deleteProduct" type="json">
+				<param name="includeProperties">
+					message,result
+				</param>
+			</result>
 			<result name="addProduct">/index.jsp</result>
 		</action>
 		<action name="product_list" class="com.jenius.web.action.ProductList"

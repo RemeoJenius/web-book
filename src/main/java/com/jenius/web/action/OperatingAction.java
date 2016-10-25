@@ -14,6 +14,7 @@ import com.jenius.web.dao.GetProductInfo;
 import com.jenius.web.dao.ProductOpDao;
 import com.jenius.web.meta.Product;
 import com.jenius.web.meta.User;
+import com.jenius.web.util.DeleteImage;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -75,7 +76,23 @@ public class OperatingAction implements ModelDriven<Product>{
 		this.message = "商品购买成功";
 		return "buyProduct";
 	}
-
+	public String deleteProduct()
+	{
+		System.out.println("deleteProduct");
+		HttpServletRequest request = ServletActionContext.getRequest();  
+		int id = Integer.parseInt(request.getParameter("id"));
+		int userId = Integer.valueOf(((User)session.get("user")).getId());
+		ApplicationContext context = new ClassPathXmlApplicationContext("application-dao.xml");
+		GetProductInfo getProductInfo = context.getBean("getProductInfo",GetProductInfo.class);
+		if(DeleteImage.deleteFile(getProductInfo.getProductsInfoById(id).getImageAdress()))
+		{
+			this.result = "success";
+			this.message = "商品删除成功";
+		}
+		ProductOpDao productOpDao = context.getBean("productOpDao" ,ProductOpDao.class);
+		productOpDao.deleteProduct(id);
+		return "deleteProduct";
+	}
 	public Product getModel() {
 		// TODO Auto-generated method stub
 		return product;

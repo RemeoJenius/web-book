@@ -19,7 +19,7 @@ public class AddProductAction implements ModelDriven<Product>{
 	private String uploadFileName;
 	private String result;
 	private Product product = new Product();
-
+	  
 	
 	public File getUpload() {
 		return upload;

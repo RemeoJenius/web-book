@@ -15,9 +15,6 @@
 <script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript">
 	$('.menu .item').tab();
-	/* $('.friends').click(function() {
-		$('.ui.modal').modal('show');
-	}); */
 	$('.right.floated.created').click(function() {
 		$('.ui.modal').modal('show');
 	});
@@ -37,6 +34,19 @@
 				}
 			});
 		});
+	};
+	function getProductDeleteId(value){
+			$.ajax({
+				url:'operating_deleteProduct?id='+value,
+				dataType:'text',
+				success:function(result){
+					alert("删除成功");
+					window.location.assign('main');
+				},
+				error:function(message){
+					alert("删除失败");
+				}
+			});
 	};
 </script>
 <style>
@@ -102,7 +112,12 @@ body {
 						<div class="ui blurring inverted dimmer">
 							<div class="content">
 								<div class="center">
+									<s:if test="#session.user.userType==0">
+									<div class="ui teal button" onclick="getProductDeleteId(${product.id});">删除商品</div>
+								</s:if>
+								<s:else>
 									<div class="ui teal button">Add shopping cart</div>
+								</s:else>
 								</div>
 							</div>
 						</div>
@@ -134,8 +149,9 @@ body {
 						<div class="ui blurring inverted dimmer">
 							<div class="content">
 								<div class="center">
+								<s:property value="#session.user.userType"/>
 								<s:if test="#session.user.userType==1">
-									<div class="ui teal button">删除商品</div>
+									<div class="ui teal button" onclick="getProductDeleteId(${product.id});">删除商品</div>
 								</s:if>
 								<s:else>
 									<div class="ui teal button">Add shopping cart</div>

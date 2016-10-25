@@ -22,4 +22,7 @@ public interface ProductOpDao {
 	
 	@Insert("insert into product(title,description,imageAdress,price,introduction) values(#{product.title},#{product.description},#{product.imageAdress},#{product.price},#{product.introduction})")
 	public void addProduct(@Param("product")Product product);
+	
+	@Delete("delete from product where id = #{productId}")
+	public void deleteProduct(int productId);
 } 
