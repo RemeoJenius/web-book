@@ -3,7 +3,19 @@
 "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 	<package name="default" namespace="/" extends="json-default">
+		<!-- 定义拦截器栈 -->
+		<interceptors>
+			<interceptor name="jenius" class="com.jenius.web.Interceptor.LoginInterceptor"></interceptor>
+			<interceptor-stack name="MyStack">
+				<interceptor-ref name="jenius"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
 		<default-action-ref name="index"></default-action-ref>
+		<global-results>
+			<result name="login">/login.jsp</result>
+		</global-results>
 		<action name="index" class="com.jenius.web.action.MainAction">
 			<result>/index.jsp</result>
 		</action>
@@ -17,6 +29,7 @@
 		</action>
 		<action name="operating_*" class="com.jenius.web.action.OperatingAction"
 			method="{1}">
+			<result name="input">/login.jsp</result>
 			<result name="buyProduct" type="json">
 				<param name="includeProperties">
 					result,message
@@ -32,7 +45,10 @@
 					message,result
 				</param>
 			</result>
+			<result name="editData">/editProduct.jsp</result>
+			<result name="editProduct" type="chain">index</result>
 			<result name="addProduct">/index.jsp</result>
+			<interceptor-ref name="MyStack"></interceptor-ref>
 		</action>
 		<action name="product_list" class="com.jenius.web.action.ProductList"
 			method="list">
@@ -45,8 +61,9 @@
 		<action name="add" class="com.jenius.web.action.AddProductAction" method="addProduct">
 		<result name="add" type="chain">index</result>
 		</action>
-		<action name="edit" class="com.jenius.web.action.EditProduct" method="edit">
-			<result name="edit">/product_edit.jsp</result>
+		<action name="auth" class="com.jenius.web.action.AuthAction">
+			<result>/login.jsp</result>
 		</action>
+		
 	</package>
 </struts> 

@@ -16,9 +16,10 @@ import com.jenius.web.meta.Product;
 import com.jenius.web.meta.User;
 import com.jenius.web.util.DeleteImage;
 import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-public class OperatingAction implements ModelDriven<Product>{
+public class OperatingAction extends ActionSupport implements ModelDriven<Product>{
 
 	private String result;
 	private String message;
@@ -97,8 +98,39 @@ public class OperatingAction implements ModelDriven<Product>{
 		productOpDao.deleteProduct(id);
 		return "deleteProduct";
 	}
+	
+	public String editData()
+	{
+		ApplicationContext context = new ClassPathXmlApplicationContext("application-dao.xml");
+		HttpServletRequest request = ServletActionContext.getRequest();
+		Map<String ,Object> sessioon = ActionContext.getContext().getSession();
+		GetProductInfo getProductInfo = context.getBean("getProductInfo",GetProductInfo.class);
+		int	id = Integer.parseInt(request.getParameter("id"));
+		session.put("product", getProductInfo.getProductsInfoById(id));
+		System.out.println(getProductInfo.getProductsInfoById(id).getDescription());
+		return "editData";
+	}
+	public String editProduct()
+	{
+		ApplicationContext context = new ClassPathXmlApplicationContext("application-dao.xml");
+		int id = (((Product)(session.get("product"))).getId());
+		ProductOpDao productOpDao = context.getBean("productOpDao",ProductOpDao.class);
+		product.setId(id);
+		productOpDao.updateProduct(product);
+		System.out.println(product.getPrice());
+		this.result = "success";
+		this.message="商品修改成功";
+		return "editProduct";
+	}
 	public Product getModel() {
 		// TODO Auto-generated method stub
 		return product;
 	}
+
+	@Override
+	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+		return INPUT;
+	}
+	
 }

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.jenius.web.meta.Product;
 
@@ -25,4 +26,7 @@ public interface ProductOpDao {
 	
 	@Delete("delete from product where id = #{productId}")
 	public void deleteProduct(int productId);
+	
+	@Update("update product set title = #{product.title} ,description=#{product.description}, price=#{product.price},introduction=#{product.introduction} where id = #{product.id}")
+	public void updateProduct(@Param("product")Product product);
 } 

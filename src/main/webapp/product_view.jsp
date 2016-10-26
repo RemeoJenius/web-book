@@ -88,6 +88,8 @@ style>body {
 					<div class="header">${product.title}</div>
 					<div class="description">
 						<p class="ui p">${product.description}</p>
+						<div class="ui divider"></div>
+						<p class="ui p">${product.introduction}</p>
 					</div>
 					<div class="ui divider"></div>
 					<span class="left floated">价格：</span> <span

@@ -8,8 +8,14 @@ import com.jenius.web.dao.GetProductInfo;
 public class Test {
 
 	public static void main(String[] args) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("application-dao.xml");
-		GetProductInfo getProductInfo = context.getBean("getProductInfo",GetProductInfo.class);
-		System.out.println(getProductInfo.getProductsInfoById(1).getDescription());
+		int a  = 1;
+		a= a+++a;
+		System.out.println("1. "+a);// 3
+		a = 1;
+		a = (a++)+a;  
+		System.out.println("2. "+a);  //3
+		a = 1;
+		a = a+(++a);  
+		System.out.println("3. "+a);  //3
 	}
 }

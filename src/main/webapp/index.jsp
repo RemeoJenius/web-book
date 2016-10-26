@@ -31,6 +31,7 @@
 				},
 				error:function(message){
 					alert("购买失败");
+					window.location.assign('login.jsp');
 				}
 			});
 		});
@@ -125,10 +126,16 @@ body {
 					</div>
 					<div class="content">
 						<div class="header">${product.title}</div>
-						<div class="meta">
+						<div class="left floated meta">
 							<a href="product_detail?id=${product.id}" class="group">详情</a>
 						</div>
+						<s:if test="#session.user.userType==0">
+						<div class="right floated meta">
+							<a href="operating_editData?id=${product.id}" class="group">修改</a>
+						</div>
+						</s:if>
 						<div class="description">${product.description}</div>
+						<h3 class="ui right floated red header">¥${product.price}</h3>
 					</div>
 					<div class="extra center aligned">
 						<div data-rating="4" class="ui star rating"></div>
