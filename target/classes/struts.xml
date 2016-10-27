@@ -13,9 +13,6 @@
 		</interceptors>
 		
 		<default-action-ref name="index"></default-action-ref>
-		<global-results>
-			<result name="login">/login.jsp</result>
-		</global-results>
 		<action name="index" class="com.jenius.web.action.MainAction">
 			<result>/index.jsp</result>
 		</action>

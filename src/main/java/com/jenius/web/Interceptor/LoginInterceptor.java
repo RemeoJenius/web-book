@@ -16,7 +16,7 @@ public class LoginInterceptor extends AbstractInterceptor {
 			String result = invocation.invoke();
 			return result;
 		} else {
-			return Action.LOGIN;
+			return "login";
 		}
 	}
 
