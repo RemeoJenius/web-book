@@ -43,7 +43,7 @@
 				</param>
 			</result>
 			<result name="editData">/editProduct.jsp</result>
-			<result name="editProduct" type="chain">index</result>
+			<result name="editProduct" type="chain">index</result> <!-- 从一个action跳转到另一个action -->
 			<result name="addProduct">/index.jsp</result>
 			<interceptor-ref name="MyStack"></interceptor-ref>
 		</action>
