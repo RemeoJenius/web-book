@@ -9,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.jenius.web.dao.ProductOpDao;
 import com.jenius.web.meta.Product;
+import com.jenius.web.util.FileUploadRename;
 import com.opensymphony.xwork2.ModelDriven;
 /*
  * 卖家添加商品操作 实现了表单数据的获取和图片的获取
@@ -67,6 +68,7 @@ public class AddProductAction implements ModelDriven<Product>{
 		{
 			file.mkdirs();
 		}
+		uploadFileName = FileUploadRename.fileRename(uploadFileName);
 		product.setImageAdress("images/"+uploadFileName); //设置 商品的图片地址
 		FileUtils.copyFile(upload, new File(file,uploadFileName));//复制商品图片到 图片目录下
 		productOpDao.addProduct(product); //调用 mybatis 接口的方法 添加商品 

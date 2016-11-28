@@ -73,10 +73,10 @@ public class OperatingAction extends ActionSupport implements ModelDriven<Produc
 		}
 		op.addProductToOrder(Userid, id, new Date().getTime(), getProductInfo.getProductsInfoById(id).getPrice());//点用接口方法将该商品添加到购物车
 		this.result = "success";//返回json
-		this.message = "商品购买成功";
+		this.message = "商品buy成功";
 		return "buyProduct";
 	}
-	public String deleteProduct()//卖家删除商品0
+	public String deleteProduct()//卖家删除商品
 	{
 		HttpServletRequest request = ServletActionContext.getRequest();//获取request  
 		int id = Integer.parseInt(request.getParameter("id"));//获取商品id 购物车页中删除
