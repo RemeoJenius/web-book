@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="css/index.css" media="screen"
 	title="no title">
 <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="js/vue1.js"></script>
+<script type="text/javascript" src="js/reqwest.js"></script>
 <script type="text/javascript" src="js/semantic.min.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript">
@@ -23,13 +25,14 @@
 
 		$('#yes').click(function () {
 			$.ajax({
-				url:'operating_buyProduct?id='+value,
-				dataType:'text',
+				type:'get',
+				url:'operating_buyProduct?id=' + value + '&timestamp='+new Date().getTime(),
+				dataType:'json',
 				success:function(result){
-					alert("购买成功");
-					window.location.assign('product_list');
+					alert(result.message);
+					window.location.assign('product_list'); 
 				},
-				error:function(message){
+				error:function(result){
 					alert("购买失败");
 					window.location.assign('login.jsp');
 				}
@@ -39,9 +42,9 @@
 	function getProductDeleteId(value){
 			$.ajax({
 				url:'operating_deleteProduct?id='+value,
-				dataType:'text',
+				dataType:'json',
 				success:function(result){
-					alert("删除成功");
+					alert(result);
 					window.location.assign('main');
 				},
 				error:function(message){

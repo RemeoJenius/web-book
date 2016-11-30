@@ -28,19 +28,13 @@
 			method="{1}">
 			<result name="input">/login.jsp</result>
 			<result name="buyProduct" type="json">
-				<param name="includeProperties">
-					result,message
-				</param>
+				<param name="root">result</param>
 			</result>
 			<result name="delete" type="json">
-				<param name="includeProperties">
-					message,result
-				</param>
+				<param name="root">result</param>
 			</result>
 			<result name="deleteProduct" type="json">
-				<param name="includeProperties">
-					message,result
-				</param>
+				<param name="root">result</param>
 			</result>
 			<result name="editData">/editProduct.jsp</result>
 			<result name="editProduct" type="chain">index</result> <!-- 从一个action跳转到另一个action -->
