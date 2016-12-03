@@ -6478,6 +6478,7 @@ h1.ui.header {
 
 h2.ui.header {
   font-size: 1.714rem;
+  padding: 38px 0px;
 }
 
 h3.ui.header {
@@ -15571,7 +15572,7 @@ ol.ui.horizontal.list li:before,
 }
 
 .ui.grid.segment {
-  margin: 1rem 0em;
+  margin: 1rem 3em;
   border-radius: 0.28571429rem;
 }
 

@@ -8,7 +8,28 @@ public class Product {
 	private String imageAdress;
 	private double price;
 	private long buyTime;
+	private String buyTimeFormat;
+	private String introduction;
+	private int typeId;
 	
+	public int getTypeId() {
+		return typeId;
+	}
+	public void setTypeId(int typeId) {
+		this.typeId = typeId;
+	}
+	public String getIntroduction() {
+		return introduction;
+	}
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+	public String getBuyTimeFormat() {
+		return buyTimeFormat;
+	}
+	public void setBuyTimeFormat(String buyTimeFormat) {
+		this.buyTimeFormat = buyTimeFormat;
+	}
 	public long getBuyTime() {
 		return buyTime;
 	}

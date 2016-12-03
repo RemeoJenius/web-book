@@ -73,58 +73,7 @@ style>body {
 </head>
 
 <body>
-	<div class="ui fixed inverted menu">
-		<div class="header item">
-			<i class="book icon"></i>
-		</div>
-		<div class="active item">Home</div>
-		<div class="ui dropdown item">
-			分类 <i class="dropdown icon"></i>
-			<div class="menu">
-				<div class="item">java</div>
-				<div class="divider"></div>
-				<div class="item">C</div>
-				<div class="divider"></div>
-				<div class="item">C++</div>
-				<div class="divider"></div>
-				<div class="item">C#</div>
-				<div class="divider"></div>
-				<div class="item">Python</div>
-			</div>
-		</div>
-		<div class="right menu">
-			<div class="item input" >
-				<div class="ui transparent inverted icon input">
-					<i class="search icon"></i> <input type="text" placeholder="Search">
-				</div>
-			</div>
-			<a class="item Link">Link</a>
-			<s:if test="#session.user!=null"><div class="item text">您好，</div>
-					<div class="ui dropdown item">
-						${user.username}<i class="dropdown icon"></i>
-						<div class="menu">
-							<a class="item">我的积分</a>
-							<a class="item" href="product_list">我的购物车</a>
-							<a class="item">收礼人</a>
-							<a class="item">我的收藏</a>
-							<a class="item" href="logout">安全退出</a>
-						</div>
-					</div>
-			</s:if>
-			<s:else>
-				<a class="item" href="login.jsp">登录</a>
-				<a class="item">注册</a>
-			</s:else>
-
-		</div>
-	</div>
-	<div class="overlay">
-		<div class="ui labeled icon vertical menu">
-			<a class="item"><i class="twitter icon"></i> Tweet</a> <a
-				class="item"><i class="facebook icon"></i> Share</a> <a class="item"><i
-				class="mail icon"></i> E-mail</a>
-		</div>
-	</div>
+	<jsp:include page="head.jsp"></jsp:include>
 	<div class="ui grid view">
 		<div class="four wide column"></div>
 		<div class="four wide column">
@@ -139,6 +88,8 @@ style>body {
 					<div class="header">${product.title}</div>
 					<div class="description">
 						<p class="ui p">${product.description}</p>
+						<div class="ui divider"></div>
+						<p class="ui p">${product.introduction}</p>
 					</div>
 					<div class="ui divider"></div>
 					<span class="left floated">价格：</span> <span

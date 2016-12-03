@@ -95,23 +95,6 @@ body>.grid {
 
 </body>
 <script type="text/javascript">
-	/* function checkLogin() {
-		var loginForm = util.get('loginForm');
-		var userName = loginForm['userName'];
-		var password = loginForm['password'];
-		$.ajax({
-			type : 'get',
-			url : 'login_login?username=' + userName+'&password='+password,
-			dataType : 'text',
-			success : function(result) {
-				loading.hide();
-				location.href = '/';
-			},
-			error :function(result) {
-				alter("登录失败");
-			
-		}); 
-	}
-	 */
+	
 </script>
 </html>

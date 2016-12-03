@@ -1,36 +1,67 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <!DOCTYPE struts PUBLIC   "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" 
 "http://struts.apache.org/dtds/struts-2.3.dtd">
-  <struts>
-  	<package name="default" namespace="/" extends="json-default">
-  		<default-action-ref name="index"></default-action-ref>
-  		<action name="index" class="com.jenius.web.action.MainAction">
-  			<result>/index.jsp</result>
-  		</action>
-  		<action name="login_*" class="com.jenius.web.action.LoginAction" method="{1}">
-  			<result name="success">/index.jsp</result>
-  			<result name="error">/login.jsp</result>
-  		</action>
-  		<action name="logout" class="com.jenius.web.action.LogoutAction">
-  			<result>/index.jsp</result>
-  		</action>
-  		<action name="operating_*" class="com.jenius.web.action.OperatingAction" method="{1}">
-  			<result name="buyProduct" type="json">
-  				<param name="includeProperties">
-					result,message
-				</param>
-  			</result> 
-  			<result name="delete" type="json">
-  				<param name="includeProperties">
-					result,message
-				</param>
-  			</result> 
-  		</action>
-  		<action name="product_list" class="com.jenius.web.action.ProductList" method="list">
-  			<result name="list">/product_list.jsp</result> 
-  		</action>
-  		<action name="product_detail" class="com.jenius.web.action.ProductDetailAction" method="productDetail">
-  			<result name="detail">/product_view.jsp</result>
-  		</action>
-  	</package>
-  </struts> 
+<struts>
+	<package name="default" namespace="/" extends="json-default">
+		<!-- 定义拦截器栈 -->
+		<interceptors>
+			<interceptor name="jenius"
+				class="com.jenius.web.Interceptor.LoginInterceptor"></interceptor>
+			<interceptor-stack name="MyStack">
+				<interceptor-ref name="jenius"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-action-ref name="index"></default-action-ref>
+		<action name="index" class="com.jenius.web.action.MainAction" method="main">
+			<result name="success" type="json">
+				<param name="req">req</param>
+			</result>
+		</action>
+		<action name="login_*" class="com.jenius.web.action.LoginAction"
+			method="{1}">
+			<result name="success">/index.jsp</result>
+			<result name="error">/login.jsp</result>
+		</action>
+		<action name="logout" class="com.jenius.web.action.LogoutAction">
+			<result>/index.jsp</result>
+		</action>
+		<action name="operating_*" class="com.jenius.web.action.OperatingAction"
+			method="{1}">
+			<result name="input">/login.jsp</result>
+			<result name="buyProduct" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="delete" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="deleteProduct" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="editData">/editProduct.jsp</result>
+			<result name="editProduct" type="chain">index</result> <!-- 从一个action跳转到另一个action -->
+			<result name="addProduct">/index.jsp</result>
+			<interceptor-ref name="MyStack"></interceptor-ref>
+		</action>
+		<action name="product_list" class="com.jenius.web.action.ProductList"
+			method="list">
+			<result name="list">/product_list.jsp</result>
+		</action>
+		<action name="product_detail" class="com.jenius.web.action.ProductDetailAction"
+			method="productDetail">
+			<result name="detail">/product_view.jsp</result>
+		</action>
+		<action name="add" class="com.jenius.web.action.AddProductAction"
+			method="addProduct">
+			<result name="add" type="chain">index</result>
+		</action>
+		<action name="auth" class="com.jenius.web.action.AuthAction">
+			<result>/login.jsp</result>
+		</action>
+		<!-- 后台管理系统 -->
+		<action name="admin">
+			<result>/WEB-INF/admin-index.html</result>
+		</action>
+	</package>
+</struts> 
