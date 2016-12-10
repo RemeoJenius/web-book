@@ -110,48 +110,17 @@ body {
 	<div class="ui main container">
 		<img class="ui image" src="images/2.jpg" alt="" />
 		<div class="ui top blue attached tabular menu">
-			<a class="item" data-tab="first">{{user.username}}</a> <a
-				class="item active" data-tab="second">热卖</a> <a class="item"
-				data-tab="third">推荐</a>
+			<a v-on:click="isShow(1,product_list)" class="item" data-tab="first">促销</a>
+			<a v-on:click="isShow(2,product_list)" class="item active"
+				data-tab="second">热卖</a> <a v-on:click="isShow(3,product_list)"
+				class="item" data-tab="third">推荐</a>
 		</div>
 		<div class="ui bottom attached tab segment" data-tab="first">
-			<!-- first -->
-			<!--
-            <div class="ui four cards">
-                <s:iterator var="product" value="#application.productList">
-                    <div class="ui relaxed card">
-                        <div class="image">
-                            <div class="ui blurring inverted dimmer" id="showContent">
-                                <div class="content">
-                                    <div class="center">
-                                        <div class="ui teal button">Add shopping cart</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <img src="${product.imageAdress}">
-                        </div>
-                        <div class="content">
-                            <div class="header">${product.title}</div>
-                            <div class="meta">
-                                <a href="product_detail?id=${product.id}" class="group">详情</a>
-                            </div>
-                            <div class="description">${product.description}</div>
-                        </div>
-                        <div class="extra center aligned">
-                            <div data-rating="4" class="ui star rating"></div>
-                        </div>
-                        <div class="extra content">
-                            <a class="right floated created">收藏</a> <a class="friends" onclick="getProductId(${product.id});"> 购买</a>
-                        </div>
-                    </div>
-                </s:iterator>
-            </div>
-        -->
-		</div>
-		<div class="ui bottom attached tab segment active" data-tab="second">
-			<div class="ui four cards">
 
-				<div v-for="product in product_list" class="ui relaxed card">
+		</div>
+		<div class="ui bottom attached {{ loadingOrNot }} tab segment active" data-tab="second">
+			<div class="ui four cards">
+				<div v-for="product in product_list" class="ui relaxed card" v-if="product.show">
 					<div class="image">
 						<div class="ui blurring inverted dimmer">
 							<div class="content">
@@ -172,7 +141,7 @@ body {
 					<div class="extra center aligned">
 						<div data-rating="4" class="ui star rating"></div>
 					</div>
-					<div class="extra content">
+					<div v-if="product.show" class="extra content">
 						<a class="right floated created">收藏</a> <a class="friends"
 							onclick="getProductId({{product.id}});"> 购买</a>
 					</div>
@@ -181,38 +150,7 @@ body {
 			</div>
 		</div>
 		<div class="ui bottom attached tab segment" data-tab="third">
-			<!-- three -->
-			<!--
-            <div class="ui four cards">
-                <div class="ui relaxed card">
-                    <div class="image">
-                        <div class="ui blurring inverted dimmer">
-                            <div class="content">
-                                <div class="center">
-                                    <div class="ui teal button">Add shopping cart</div>
-                                </div>
-                            </div>
-                        </div>
-                        <img src="${product.imageAdress}">
-                    </div>
-                    <div class="content">
-                        <div class="header">${product.title}</div>
-                        <div class="meta">
-                            <a href="product_detail?id=${product.id}" class="group">详情</a>
-                        </div>
-                        <div class="description">${product.description}</div>
-                    </div>
-                    <div class="extra center aligned">
-                        <div data-rating="4" class="ui star rating"></div>
-                    </div>
-                    <div class="extra content">
-                        <a class="right floated created">收藏</a> <a class="friends" onclick="getProductId(${product.id});"> 购买</a>
-                    </div>
-                </div>
 
-            </div>
-        </div>
-    -->
 			<div class="ui vertical very padded black segment ">
 				<div class="ui grid">
 					<div class="four wide column">
@@ -282,6 +220,17 @@ body {
                 user:{}
             },
             methods:{
+            	isShow:function(typeId,product_list){
+            		product_list.forEach(function(product){
+            			if(product.typeId == typeId){
+            				product.show = true;
+            			}else{
+            				product.show = false;
+            			}
+
+					})
+
+            	},
             	getData:function(){
             		var self = this;
             		reqwest({
@@ -289,26 +238,38 @@ body {
             			type:"json",
             			method:"get",
             			success:function(req){
-            				self.product_list = req.root.product_list;
-            				if(req.root.user!=null){
+            				self.product_list = req.req.product_list;
+            				if(req.user!=null){
             					self.is_login=true;
-            					self.user=req.root.user;
-            					
+            					self.user=req.req.user;
+
             				}
             			}
             		})
-            		
+
             	}
-            	
+
+
             },
+			computed:{
+				loadingOrNot:function () {
+					if(this.product_list.length == 0){
+						return 'loading'
+					}else{
+						return ''
+					}
+				}
+			},
             ready:function(){
             	this.getData();
+				this.isShow(2,this.product_list);
+
             }
-            
+
         });
-        
-        
-        
+
+
+
 
         </script>
 </body>

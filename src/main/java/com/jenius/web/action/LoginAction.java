@@ -3,6 +3,7 @@ package com.jenius.web.action;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +26,16 @@ import com.opensymphony.xwork2.ModelDriven;
 public class LoginAction implements ModelDriven<User> {
 
 	private User user = new User();
+	private HashMap<String, Object> root ;
+	
+	public LoginAction(){
+		root = new HashMap<>();
+	}
+	
+	public HashMap<String, Object> getRoot() {
+		return root;
+	}
+
 
 	public String login() throws IOException {
 		String str = null;
@@ -36,19 +47,16 @@ public class LoginAction implements ModelDriven<User> {
 		if (user1 != null) {//说明数据库中有该用户
 			Map<String, Object> session = ac.getSession();//获取ac容器封装的session对象
 			session.put("user", user1);//将用户信息甜到session中前端jsp用session容器获取
+			this.root.put("user", user1);
 			session.put("Login","OK");//拦截器 如果拦截器中session.get("Login") 是null说明没登录跳转到登陆页面
 			str = "success";
 		} else {
-			Map<String, Object> request = (Map<String, Object>) ac.get("request");//获取request返回登陆错误信息
+//			Map<String, Object> request = (Map<String, Object>) ac.get("request");//获取request返回登陆错误信息
 			str = "error";
-			request.put("message", "用户名或密码错误！");
+//			request.put("message", "用户名或密码错误！");
+			this.root.put("message", "用户名或密码错误！");
 		}
 		return str;
-	}
-
-	public String message() throws IOException {
-		
-		return null;
 	}
 
 	public User getModel() {

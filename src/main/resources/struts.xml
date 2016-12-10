@@ -21,8 +21,11 @@
 		</action>
 		<action name="login_*" class="com.jenius.web.action.LoginAction"
 			method="{1}">
-			<result name="success">/index.jsp</result>
-			<result name="error">/login.jsp</result>
+			<result name="error" type="json">
+				<param name="root">root</param>
+			</result>
+			<result name="success">/index_vue.html</result>
+			
 		</action>
 		<action name="logout" class="com.jenius.web.action.LogoutAction">
 			<result>/index.jsp</result>

@@ -11,7 +11,16 @@ public class Product {
 	private String buyTimeFormat;
 	private String introduction;
 	private int typeId;
+	private boolean show = false;
 	
+	
+	
+	public boolean isShow() {
+		return show;
+	}
+	public void setShow(boolean show) {
+		this.show = show;
+	}
 	public int getTypeId() {
 		return typeId;
 	}

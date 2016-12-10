@@ -27,7 +27,7 @@ public class MainAction extends ActionSupport {
 		req = new HashMap<String, Object>();
 	}
 	
-	public HashMap<String, Object> getRoot() {
+	public HashMap<String, Object> getreq() {
 		return req;
 	}
 
@@ -37,6 +37,11 @@ public class MainAction extends ActionSupport {
 		ApplicationContext context = new ClassPathXmlApplicationContext("application-dao.xml");//获取IOC容器
 		GetProductInfo getProductInfo = context.getBean("getProductInfo",GetProductInfo.class);//获取mbatis对象
 		productList = getProductInfo.getProductsInfo();//调用接口方法 获取数据库中所有商品信息
+		for (Product product : productList){
+			if(product.getTypeId() == 2){
+				product.setShow(true);
+			}
+		}
 //		application.put("productList", productList);//struts2 ac容器进行后台渲染被前端渲染代替
 		this.req.put("product_list", productList);
 		return SUCCESS;
