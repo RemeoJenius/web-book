@@ -30,6 +30,11 @@ public class OperatingAction extends ActionSupport implements ModelDriven<Produc
 	private HashMap<String, Object> result;
 	private Map<String, Object> session = ActionContext.getContext().getSession();
 	private Product product = new Product();
+	private static ApplicationContext context;
+	
+	static {
+		context = new ClassPathXmlApplicationContext("application-dao.xml");
+	}
 
 	public OperatingAction() {
 		// 初始化Map对象
@@ -44,7 +49,6 @@ public class OperatingAction extends ActionSupport implements ModelDriven<Produc
 		HttpServletRequest request = ServletActionContext.getRequest();// 获取request对象
 		int id = Integer.parseInt(request.getParameter("id"));// 转换id为int
 		int userId = Integer.valueOf(((User) session.get("user")).getId());// 获取user的id并转换为int
-		ApplicationContext context = new ClassPathXmlApplicationContext("application-dao.xml");// 获取IOC容器
 		ProductOpDao productOpDao = context.getBean("productOpDao", ProductOpDao.class);// 获取mybatis
 																						// 接口对象
 		productOpDao.deleteProductById(userId, id);// 调用 接口方法 商品id和用户id
@@ -57,7 +61,6 @@ public class OperatingAction extends ActionSupport implements ModelDriven<Produc
 	// 商品购买方法
 	public String buyProduct() {
 		int id;
-		ApplicationContext context = new ClassPathXmlApplicationContext("application-dao.xml");// 获取ioc容器
 		ProductOpDao op = context.getBean("productOpDao", ProductOpDao.class); // 获取mybatis
 																				// 接口对象（依赖注入）
 		HttpServletRequest request = ServletActionContext.getRequest(); // 获取request对象
@@ -82,7 +85,6 @@ public class OperatingAction extends ActionSupport implements ModelDriven<Produc
 		HttpServletRequest request = ServletActionContext.getRequest();// 获取request
 		int id = Integer.parseInt(request.getParameter("id"));// 获取商品id 购物车页中删除
 		int userId = Integer.valueOf(((User) session.get("user")).getId());// 获取userid
-		ApplicationContext context = new ClassPathXmlApplicationContext("application-dao.xml");// 获取IOC容器
 		GetProductInfo getProductInfo = context.getBean("getProductInfo", GetProductInfo.class);// 获取
 																								// mybatis
 																								// 接口对象
@@ -100,10 +102,9 @@ public class OperatingAction extends ActionSupport implements ModelDriven<Produc
 
 	public String editData()// 卖家点击修改 回到一个表单页，表单中有值 ，值是从数据库中取出来填充到容器中
 	{
-		ApplicationContext context = new ClassPathXmlApplicationContext("application-dao.xml");// 获取IOC容器
-		HttpServletRequest request = ServletActionContext.getRequest();// 获取request对象为了获取jsp用http
+		ActionContext ac = ActionContext.getContext();
+		HttpServletRequest request = (HttpServletRequest) ac.get("request");// 获取request对象为了获取jsp用http
 																		// get方法传来的id
-		Map<String, Object> sessioon = ActionContext.getContext().getSession();// 获取session容器
 		GetProductInfo getProductInfo = context.getBean("getProductInfo", GetProductInfo.class);// 取到mybatis
 																								// 接口
 		int id = Integer.parseInt(request.getParameter("id"));// 强制类型转换id为int

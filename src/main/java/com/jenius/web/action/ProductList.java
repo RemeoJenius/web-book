@@ -2,6 +2,7 @@ package com.jenius.web.action;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.context.ApplicationContext;
@@ -15,14 +16,14 @@ import com.opensymphony.xwork2.ActionContext;
 
 public class ProductList {
 	
-	private String message;
-	private String result;
+	private Map<String, Object> root = new HashMap<String, Object>();
 	
-	public String getMessage() {
-		return message;
+	
+	public Map<String, Object> getRoot() {
+		return root;
 	}
-	public void setMessage(String message) {
-		this.message = message;
+	public void setRoot(Map<String, Object> root) {
+		this.root = root;
 	}
 	public String list()
 	{
@@ -38,8 +39,10 @@ public class ProductList {
 			p.setBuyTimeFormat(sdf.format(p.getBuyTime()));
 		}
 		session.put("productList", productList);
-		setMessage("删除成功");
-		this.result = "success";
+		root.put("productList", productList);
+		if(session.get("user") != null){
+			root.put("user", session.get("user"));
+		}
 		return "list";
 	}
 }
